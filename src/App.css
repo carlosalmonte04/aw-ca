@@ -1,0 +1,94 @@
+.main-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.main-input {
+  display: flex;
+  align-self: center;
+  width: 70%;
+  transform: translateY(-32px);
+  font-size: calc(4vw + 22px);
+  align-self: center;
+  font-weight: 300;
+  background-color: transparent;
+  border: none;
+  border-bottom: solid black 2px;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+}
+
+.suggestions-container {
+  display: flex;
+  align-self: center;
+  width: 70%;
+  height: 300px;
+  transform: translateY(-32px);
+  font-size: calc(4vw + 22px);
+  align-self: center;
+  font-weight: 300;
+  background-color: white;
+  border: none;
+  border-bottom: solid black 2px;
+  outline: none;
+  text-align: center;
+}
+
+.project-logo {
+  display: flex;
+  align-self: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+.most-active-list-container {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  padding: 16px 32px 16px 32px;
+  background-color: white;
+}
+.most-active-list-item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 375px;
+}
+
+.most-active-list-item-element {
+  display: flex;
+}
+
+.stock-list-item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 375px;
+  padding: 4px 12px 4px 12px;
+  transition: background-color 0.5s ease;
+}
+
+.stock-list-item-container:hover {
+  background-color: red;
+  cursor: pointer;
+}
+
+.stock-list-item-element {
+  display: flex;
+}
+
+@media screen and (min-width: 1440px) {
+  .main-input {
+    font-size: 116px;
+  }
+}
