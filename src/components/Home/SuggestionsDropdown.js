@@ -14,23 +14,20 @@ class UnconnectedSuggestionDropdown extends Component {
     const { searchText: nextSearchText } = nextProps;
 
     if (nextSearchText && searchText !== nextSearchText) {
-      console.log("debouncing");
       this.filterStocksDebounced();
     }
   }
 
-  filterStocksDebounced = debounce(() => this.filterStocks(), 1000);
+  filterStocksDebounced = debounce(() => this.filterStocks(), 500);
 
   filterStocks = () => {
     const filteredStocks = this.filteredStocks();
-    console.log("filteredStocks", filteredStocks);
 
     this.setState({ filteredStocks });
   };
 
   filteredStocks = () => {
     const { allAvailableStocks, searchText } = this.props;
-    console.log("ALL AVALIBALM", allAvailableStocks);
 
     const stocks = allAvailableStocks.filter(stock =>
       `${stock.symbol}${stock.name}`
@@ -43,14 +40,25 @@ class UnconnectedSuggestionDropdown extends Component {
 
   render() {
     const { filteredStocks } = this.state;
+    const { searchText } = this.props;
 
-    return (
-      <div className="most-active-list-container">
-        {filteredStocks.map(stock => (
-          <StockListItem key={`${stock.symbol}${stock.name}`} stock={stock} />
-        ))}
-      </div>
-    );
+    if (searchText) {
+      return (
+        <div className="stocks-list-container dropdown">
+          {filteredStocks
+            .slice(0, 100)
+            .map((stock, index) => (
+              <StockListItem
+                isForDropdown
+                key={`${stock.symbol}${stock.name}`}
+                itemNumer={index + 1}
+                stock={stock}
+              />
+            ))}
+        </div>
+      );
+    }
+    return null;
   }
 }
 

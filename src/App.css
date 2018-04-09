@@ -1,3 +1,9 @@
+h1,
+h4,
+p {
+  font-family: "Montserrat", sans-serif;
+}
+
 .main-container {
   display: flex;
   height: 100%;
@@ -6,11 +12,23 @@
   align-items: center;
 }
 
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  height: 72px;
+  z-index: 10;
+}
+
 .home-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
   width: 100%;
+  padding-top: 172px;
 }
 
 .main-input {
@@ -51,13 +69,40 @@
   font-family: "Montserrat", sans-serif;
 }
 
-.most-active-list-container {
+.list-header-container {
   display: flex;
   align-self: center;
+}
+
+.list-header {
+  display: flex;
+  align-self: center;
+}
+
+.stocks-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.centered-boxes {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-self: center;
+  flex-wrap: wrap;
+}
+
+.stocks-list-container {
+  display: flex;
   flex-direction: column;
   padding: 16px 32px 16px 32px;
   background-color: white;
 }
+
+.stocks-list-container.dropdown {
+  align-self: center;
+}
+
 .most-active-list-item-container {
   display: flex;
   flex-direction: row;
@@ -78,13 +123,127 @@
   transition: background-color 0.5s ease;
 }
 
+.stock-list-item-container-element {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .stock-list-item-container:hover {
-  background-color: red;
+  background-color: #828dbc;
   cursor: pointer;
 }
 
 .stock-list-item-element {
   display: flex;
+}
+
+.stock-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 72px;
+  width: 80%;
+  justify-content: center;
+  align-self: center;
+}
+
+.stock-main-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+}
+
+.stock-name {
+  display: flex;
+}
+
+.stock-symbol {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.add-or-remove-container {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+}
+
+.add-or-remove-btn {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: none;
+  font-size: 22px;
+  color: #46896c;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.stock-news-list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 60%;
+  transition: background-color 0.5s ease;
+}
+
+.stock-news-list-item:hover {
+  background-color: #828dbc;
+  cursor: pointer;
+}
+
+.stock-news-list-item-element {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 16px;
+}
+
+.add-or-remove-btn.add {
+  color: #46896c;
+}
+
+.add-or-remove-btn.remove {
+  color: #ba7575;
+}
+
+.stock-info-list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 33%;
+}
+
+.stock-info-list-item-element {
+  display: flex;
+  width: 10%;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.stock-navigation-headers {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  margin-top: 72px;
+  justify-content: space-around;
+  align-self: center;
+}
+
+.stock-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (min-width: 1440px) {

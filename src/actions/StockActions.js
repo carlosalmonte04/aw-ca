@@ -9,3 +9,13 @@ export const setAllAvailableStocks = allAvailableStocks => ({
   type: T.SET_ALL_AVAILABLE_STOCKS,
   payload: { allAvailableStocks }
 });
+
+export const setActiveStock = stock => ({
+  type: T.SET_ACTIVE_STOCK,
+  payload: { stock }
+});
+
+export const setStockNews = stockNews => ({
+  type: T.SET_STOCK_NEWS,
+  payload: { stockNews }
+});

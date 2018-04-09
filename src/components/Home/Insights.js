@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getMostActiveStocks } from "../../helpers";
 import { setMostActiveStocks } from "../../actions";
+import { StockListItem } from "../common";
 
 class UnconnectedInsights extends Component {
   async componentDidMount() {
@@ -16,27 +17,43 @@ class UnconnectedInsights extends Component {
   render() {
     const { mostActiveStocks } = this.props;
     return (
-      <div className="most-active-list-container">
-        {mostActiveStocks.map(mostActiveStock => (
-          <div
-            key={mostActiveStock.symbol}
-            className="most-active-list-item-container"
-          >
+      <div className="stocks-list-container">
+        <div className="list-header-container">
+          <h1 className="list-header">Insights</h1>
+        </div>
+        <div className="stocks-table">
+          <div className="stock-list-item-container">
             <div className="most-active-list-item-element">
-              <p>{mostActiveStock.symbol || "-"}</p>
+              <p />
             </div>
             <div className="most-active-list-item-element">
-              <p>{mostActiveStock.latestPrice || "-"}</p>
+              <p>Symbol</p>
             </div>
             <div className="most-active-list-item-element">
-              <p>{mostActiveStock.activePrice || "-"}</p>
+              <p>Company name</p>
             </div>
             <div className="most-active-list-item-element">
-              <p>{mostActiveStock.changePercent || "-"}</p>
+              <p>Price</p>
             </div>
-            <div />
+            <div className="most-active-list-item-element">
+              <p>something</p>
+            </div>
+            <div className="most-active-list-item-element">
+              <p>change</p>
+            </div>
+            <div className="most-active-list-item-element">
+              <p>change</p>
+            </div>
           </div>
-        ))}
+          {mostActiveStocks.map((stock, index) => (
+            <StockListItem
+              insights
+              key={`${stock.symbol}${stock.name}`}
+              itemNumer={index + 1}
+              stock={stock}
+            />
+          ))}
+        </div>
       </div>
     );
   }

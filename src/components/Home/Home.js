@@ -1,6 +1,11 @@
 import React, { Component } from "react";
-import Stepper from "react-stepper-horizontal";
-import { ResultsList, Insights, SuggestionsDropdown } from "./";
+import {
+  ResultsList,
+  Insights,
+  SuggestionsDropdown,
+  RecentlyViewed,
+  MyStocks
+} from "./";
 
 class Home extends Component {
   state = {
@@ -8,11 +13,7 @@ class Home extends Component {
   };
 
   onInputTextChange = ({ target: { value: searchText } }) => {
-    this.setState({ searchText }, this.handleStockSearch);
-  };
-
-  handleStockSearch = () => {
-    const { searchText } = this.state;
+    this.setState({ searchText });
   };
 
   render() {
@@ -20,21 +21,24 @@ class Home extends Component {
 
     return (
       <div className="home-container">
-        <h1 className="project-logo">Hello 5</h1>
-        <Stepper
-          steps={[{ title: "Select you 5s" }, { title: "Start watching" }]}
-          activeStep={0}
-        />
+        {/*<Stepper
+                  steps={[{ title: "Select you 5s" }, { title: "Start watching" }]}
+                  activeStep={0}
+                />*/}
         <input
           type="text"
           className="main-input"
-          placeholder="Search for a stock symbol"
+          placeholder="Search"
           onChange={this.onInputTextChange}
           value={searchText}
         />
         <SuggestionsDropdown searchText={searchText} />
         <ResultsList />
-        <Insights />
+        <div className="centered-boxes">
+          <Insights />
+          <RecentlyViewed />
+          <MyStocks />
+        </div>
       </div>
     );
   }
