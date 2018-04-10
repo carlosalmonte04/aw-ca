@@ -218,7 +218,7 @@ h4 {
   width: 100%;
   padding: 4px 12px 4px 12px;
   transition: background-color 0.5s ease;
-  font-size: calc(2vw + 22px);
+  font-size: calc(1vw + 22px);
   font-weight: 300;
 }
 
@@ -363,6 +363,11 @@ h4 {
 
 .react-grid-Row {
   cursor: pointer;
+}
+
+.stock-header-container {
+  display: flex;
+  flex-direction: row;
 }
 
 @keyframes fade-in {
