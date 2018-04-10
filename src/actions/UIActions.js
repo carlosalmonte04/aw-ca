@@ -11,3 +11,8 @@ export const addRecentlyViewedStock = stock => {
     payload: { stock: appReadyStock }
   };
 };
+
+export const setDropdownIsVisible = bool => ({
+  type: T.SET_DROPDOWN_IS_VISIBLE,
+  payload: { bool }
+});

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { debounce } from "underscore";
-import { setMostActiveStocks } from "../../actions";
+import { setMostActiveStocks, setDropdownIsVisible } from "../../actions";
 import { StockListItem } from "../common";
 
 class UnconnectedSuggestionDropdown extends Component {
@@ -11,10 +11,17 @@ class UnconnectedSuggestionDropdown extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { searchText } = this.props;
-    const { searchText: nextSearchText } = nextProps;
+    const { searchText: nextSearchText, setDropdownIsVisible } = nextProps;
 
     if (nextSearchText && searchText !== nextSearchText) {
       this.filterStocksDebounced();
+    }
+
+    if (!searchText && nextSearchText) {
+      setDropdownIsVisible(true);
+    }
+    if (searchText && !nextSearchText) {
+      setDropdownIsVisible(false);
     }
   }
 
@@ -40,11 +47,15 @@ class UnconnectedSuggestionDropdown extends Component {
 
   render() {
     const { filteredStocks } = this.state;
-    const { searchText } = this.props;
+    const { searchText, isDropdownVisible } = this.props;
 
     if (searchText) {
       return (
-        <div className="stocks-list-container dropdown">
+        <div
+          className={`stocks-list-container dropdown ${
+            isDropdownVisible ? "show" : "hide"
+          } ${filteredStocks.length > 0 ? "slide-down" : ""}`}
+        >
           {filteredStocks
             .slice(0, 100)
             .map((stock, index) => (
@@ -62,10 +73,15 @@ class UnconnectedSuggestionDropdown extends Component {
   }
 }
 
-const mapStateToProps = ({ stocks: { allAvailableStocks } }) => ({
-  allAvailableStocks
+const mapStateToProps = ({
+  stocks: { allAvailableStocks },
+  UI: { isDropdownVisible }
+}) => ({
+  allAvailableStocks,
+  isDropdownVisible
 });
 
 export const SuggestionsDropdown = connect(mapStateToProps, {
-  setMostActiveStocks
+  setMostActiveStocks,
+  setDropdownIsVisible
 })(UnconnectedSuggestionDropdown);

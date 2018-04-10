@@ -8,7 +8,7 @@ class UnconnectedHeader extends Component {
   render() {
     return (
       <div className="header-container">
-        <p>Download Resume</p>
+        <h1 className="title">My clean 5s</h1>
       </div>
     );
   }

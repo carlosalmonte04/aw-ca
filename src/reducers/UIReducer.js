@@ -1,17 +1,17 @@
 import * as T from "../actions/types";
 
 const INITIAL_STATE = {
-  recentlyViewed: {}
+  isDropdownVisible: false
 };
 
 const UIReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case T.ADD_STOCK_TO_RECENTLY_VIEWED: {
-      const { stock } = action.payload;
+    case T.SET_DROPDOWN_IS_VISIBLE: {
+      const { bool } = action.payload;
 
       return {
         ...state,
-        recentlyViewed: { ...state.recentlyViewed, ...stock }
+        isDropdownVisible: bool
       };
     }
 

@@ -1,68 +1,86 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import ReactDataGrid from "react-data-grid";
 import { getMostActiveStocks } from "../../helpers";
-import { setMostActiveStocks } from "../../actions";
-import { StockListItem } from "../common";
+import {
+  setMostActiveStocks,
+  setActiveStock,
+  customNavAction
+} from "../../actions";
 
 class UnconnectedInsights extends Component {
+  state = {
+    columns: [],
+    rows: []
+  };
   async componentDidMount() {
     try {
       const mostActiveStocks = await getMostActiveStocks();
       this.props.setMostActiveStocks(mostActiveStocks);
+      this.setupTable();
     } catch (err) {
       console.log("**Could not get most active stocks", err);
     }
   }
 
-  render() {
+  setupTable = () => {
     const { mostActiveStocks } = this.props;
+
+    this.setState({
+      columns: [
+        { key: "symbol", name: "Symbol" },
+        { key: "companyName", name: "Name" },
+        { key: "changePercent", name: "%" },
+        { key: "latestPrice", name: "Price" }
+      ],
+      rows: mostActiveStocks
+    });
+  };
+
+  renderAddOrRemoveBtn = symbol => {
+    if (this.props.userStocks[symbol]) {
+      return <div>+</div>;
+    } else return <div>-</div>;
+  };
+
+  rowGetter = i => this.state.rows[i];
+
+  onRowClick = i => {
+    const stock = this.state.rows[i];
+    const { setActiveStock, customNavAction } = this.props;
+    setActiveStock(stock);
+    customNavAction(`/stocks/${stock.symbol}`);
+  };
+
+  render() {
+    const { columns, rows } = this.state;
     return (
-      <div className="stocks-list-container">
+      <div className="stocks-list-container grid">
         <div className="list-header-container">
           <h1 className="list-header">Insights</h1>
         </div>
-        <div className="stocks-table">
-          <div className="stock-list-item-container">
-            <div className="most-active-list-item-element">
-              <p />
-            </div>
-            <div className="most-active-list-item-element">
-              <p>Symbol</p>
-            </div>
-            <div className="most-active-list-item-element">
-              <p>Company name</p>
-            </div>
-            <div className="most-active-list-item-element">
-              <p>Price</p>
-            </div>
-            <div className="most-active-list-item-element">
-              <p>something</p>
-            </div>
-            <div className="most-active-list-item-element">
-              <p>change</p>
-            </div>
-            <div className="most-active-list-item-element">
-              <p>change</p>
-            </div>
-          </div>
-          {mostActiveStocks.map((stock, index) => (
-            <StockListItem
-              insights
-              key={`${stock.symbol}${stock.name}`}
-              itemNumer={index + 1}
-              stock={stock}
-            />
-          ))}
-        </div>
+        <ReactDataGrid
+          columns={columns}
+          rowGetter={this.rowGetter}
+          rowsCount={rows.length}
+          onRowClick={this.onRowClick}
+          on
+        />
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ stocks: { mostActiveStocks } }) => ({
-  mostActiveStocks
+const mapStateToProps = ({
+  stocks: { mostActiveStocks },
+  user: { stocks: userStocks }
+}) => ({
+  mostActiveStocks,
+  userStocks
 });
 
 export const Insights = connect(mapStateToProps, {
-  setMostActiveStocks
+  setMostActiveStocks,
+  setActiveStock,
+  customNavAction
 })(UnconnectedInsights);

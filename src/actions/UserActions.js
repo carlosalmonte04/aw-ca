@@ -1,5 +1,10 @@
 import * as T from "./types";
 
+export const setUserStocks = stocks => ({
+  type: T.SET_USER_STOCKS,
+  payload: { stocks }
+});
+
 export const removeStockFromUser = stock => ({
   type: T.REMOVE_STOCK,
   payload: { stock }

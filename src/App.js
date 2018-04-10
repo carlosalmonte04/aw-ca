@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route } from "react-router";
 import { ConnectedRouter } from "react-router-redux";
+import "izitoast/dist/css/iziToast.css";
+import "bootstrap/dist/css/bootstrap.css";
 import { Home, Stock, Header } from "./components";
 import { getAllAvailableStocks } from "./helpers";
 import { setAllAvailableStocks } from "./actions";
 import "./App.css";
-import "izitoast/dist/css/iziToast.css";
 
 class UnconnectedApp extends Component {
   async componentDidMount() {

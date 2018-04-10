@@ -3,6 +3,7 @@ import * as T from "../actions/types";
 const INITIAL_STATE = {
   user: {},
   stocks: {},
+  recentlyViewed: {},
   amount: 0
 };
 
@@ -13,7 +14,17 @@ const UserReducer = (state = INITIAL_STATE, action) => {
 
       return {
         ...state,
-        stocks
+        stocks,
+        amount: Object.keys(stocks || {}).length
+      };
+    }
+
+    case T.ADD_STOCK_TO_RECENTLY_VIEWED: {
+      const { stock } = action.payload;
+
+      return {
+        ...state,
+        recentlyViewed: { ...state.recentlyViewed, ...stock }
       };
     }
 

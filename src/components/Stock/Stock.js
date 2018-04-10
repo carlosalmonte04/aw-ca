@@ -3,6 +3,7 @@ import { Route } from "react-router";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { StockInfo, StockPerformance, StockNews } from "./";
+import { MyStocks } from "../";
 import {
   getStockWithSymbol,
   getStockLogoWithSymbol,
@@ -13,7 +14,8 @@ import {
 import {
   setActiveStock,
   addRecentlyViewedStock,
-  setStockNews
+  setStockNews,
+  customNavAction
 } from "../../actions";
 
 class UnconnectedStock extends Component {
@@ -40,16 +42,20 @@ class UnconnectedStock extends Component {
       console.log(`**Could not get stock with symbol`, err);
     }
   }
-
+  onGoBackClick = () => {
+    this.props.customNavAction("/");
+  };
   render() {
     const { activeStock: { symbol, companyName, logoUrl } } = this.props;
     return (
       <div className="stock-container">
+        <div onClick={this.onGoBackClick}>Go back</div>
         <div className="stock-main-info-container">
           <h1 className="stock-name">{companyName}</h1>
           <h4 className="stock-symbol">{symbol}</h4>
           <img src={`${logoUrl}`} alt="stock logo" />
         </div>
+        <MyStocks />
         <div className="stock-navigation-headers">
           <Link to={`/stocks/${symbol}/info`}>
             <h2>Info</h2>
@@ -77,5 +83,6 @@ const mapStateToProps = ({ stocks: { activeStock } }) => ({ activeStock });
 export const Stock = connect(mapStateToProps, {
   setActiveStock,
   addRecentlyViewedStock,
-  setStockNews
+  setStockNews,
+  customNavAction
 })(UnconnectedStock);

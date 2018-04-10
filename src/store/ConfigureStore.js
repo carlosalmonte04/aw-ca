@@ -11,7 +11,7 @@ import Reducers from "../reducers";
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["routerReducer"]
+  blacklist: ["routerReducer", "UI"]
 };
 
 const composeEnhancers =

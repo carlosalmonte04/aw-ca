@@ -73,10 +73,10 @@ export const UnconnectedStockListItem = props => {
         onClick={onStockItemClick}
         className="stock-list-item-container"
       >
-        <div className="most-active-list-item-element">
+        <div className="stock-list-item-element">
           <p>{stock.symbol || "-"}</p>
         </div>
-        <div className="most-active-list-item-element">
+        <div className="stock-list-item-element">
           <p>{stock.name || "-"}</p>
         </div>
         <div
@@ -102,22 +102,22 @@ export const UnconnectedStockListItem = props => {
       onClick={onStockItemClick}
       className="stock-list-item-container"
     >
-      <div className="most-active-list-item-element">
+      <div className="stock-list-item-element">
         <p>{itemNumer}</p>
       </div>
-      <div className="most-active-list-item-element">
+      <div className="stock-list-item-element">
         <p>{stock.symbol || "-"}</p>
       </div>
-      <div className="most-active-list-item-element">
+      <div className="stock-list-item-element">
         <p>{stock.name || "-"}</p>
       </div>
-      <div className="most-active-list-item-element">
+      <div className="stock-list-item-element">
         <p>{stock.latestPrice || "-"}</p>
       </div>
-      <div className="most-active-list-item-element">
+      <div className="stock-list-item-element">
         <p>{stock.activePrice || "-"}</p>
       </div>
-      <div className="most-active-list-item-element">
+      <div className="stock-list-item-element">
         <p>{stock.changePercent || "-"}</p>
       </div>
       <div className="add-or-remove-container" onClick={onAddRemoveStockClick}>
