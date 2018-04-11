@@ -38,6 +38,7 @@ h4 {
 }
 
 .title {
+  cursor: pointer;
   color: #adadad;
 }
 
@@ -251,10 +252,14 @@ h4 {
   flex-direction: column;
   justify-content: center;
   align-self: center;
+  align-items: center;
+  width: 70%;
+  min-width: 375px;
 }
 
 .stock-name {
   display: flex;
+  text-align: center;
 }
 
 .stock-symbol {
@@ -368,6 +373,65 @@ h4 {
 .stock-header-container {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 32px;
+}
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 128px;
+  background-color: #46896c;
+  color: white;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  outline: none;
+  border-radius: 10px;
+}
+
+.remove-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 128px;
+  background-color: #ba7575;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.5s ease;
+  border-radius: 10px;
+}
+
+.go-back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 128px;
+  background-color: #c9c38b;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.5s ease;
+  border-radius: 10px;
+}
+
+.add-btn:hover {
+  background-color: #6aba97;
+}
+
+.remove-btn:hover {
+  background-color: #db8e8e;
+}
+
+.stock-logo {
+  align-self: center;
+  height: 100px;
+  width: 100px;
 }
 
 @keyframes fade-in {

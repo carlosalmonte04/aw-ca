@@ -107,16 +107,21 @@ class UnconnectedStock extends Component {
 
     return (
       <div className="stock-container">
-        <div onClick={this.onGoBackClick}>Go back</div>
         <div className="stock-main-info-container">
           <div className="stock-header-container">
+            <button className="go-back-btn" onClick={this.onGoBackClick}>
+              Go back
+            </button>
             <h1 className="stock-name">{companyName}</h1>
-            <div onClick={this.onAddRemoveStockClick}>
-              {!!userStocks[symbol] ? "-" : "+"}
-            </div>
+            <button
+              className={`${!!userStocks[symbol] ? "remove" : "add"}-btn`}
+              onClick={this.onAddRemoveStockClick}
+            >
+              {!!userStocks[symbol] ? "remove" : "add"}
+            </button>
           </div>
           <h4 className="stock-symbol">{symbol}</h4>
-          <img src={`${logoUrl}`} alt="stock logo" />
+          <img src={`${logoUrl}`} alt="stock logo" className="stock-logo" />
         </div>
         <div className="stock-navigation-headers">
           <Link to={`/stocks/${symbol}/info`}>
